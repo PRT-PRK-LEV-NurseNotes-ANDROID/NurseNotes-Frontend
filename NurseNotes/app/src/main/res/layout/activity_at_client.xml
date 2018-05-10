@@ -70,13 +70,64 @@
             android:layout_height="wrap_content"
             android:text="Signature" />
 
-        <com.simplify.ink.InkView
-            android:id="@+id/signature"
+        <RelativeLayout
+            android:id="@+id/signature_pad_container"
             android:layout_width="match_parent"
-            android:layout_height="180dp"
-            android:background="#7fc8e3"
-            android:baselineAligned="false" />
-            <!--android:foregroundGravity="fill_horizontal"-->
+            android:layout_height="match_parent"
+            android:layout_above="@+id/buttons_container">
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_above="@+id/signature_pad_description"
+                android:layout_marginBottom="8dp"
+                android:background="@android:color/darker_gray" />
+
+            <TextView
+                android:id="@+id/signature_pad_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:layout_marginBottom="16dp"
+                android:text="Agreement"
+                android:textColor="@android:color/darker_gray" />
+
+            <com.github.gcacace.signaturepad.views.SignaturePad
+                android:id="@+id/signature_pad"
+                android:layout_width="match_parent"
+                android:layout_height="278dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentTop="true" />
+
+        </RelativeLayout>
+
+        <LinearLayout
+            android:id="@+id/buttons_container"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal"
+            android:paddingTop="16dp">
+
+            <Button
+                android:id="@+id/clear_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:text="Clear_pad" />
+
+            <Button
+                android:id="@+id/save_button"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:enabled="false"
+                android:text="Save_signature" />
+        </LinearLayout>
+
+        <!--android:foregroundGravity="fill_horizontal"-->
             <!--android:keepScreenOn="true"-->
             <!--android:overScrollMode="never"-->
             <!--app:inkFlags="interpolation|responsiveWeight" />-->

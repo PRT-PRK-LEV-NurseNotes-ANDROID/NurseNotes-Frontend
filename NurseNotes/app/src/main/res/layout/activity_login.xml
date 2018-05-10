@@ -35,4 +35,11 @@
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:text="Register" />
+
+  <TextView
+      android:id="@+id/error_textView"
+      android:layout_width="match_parent"
+      android:layout_height="43dp"
+      android:layout_marginTop="50dp"
+      android:textAlignment="center" />
 </LinearLayout>

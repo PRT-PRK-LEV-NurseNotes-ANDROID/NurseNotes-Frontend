@@ -48,11 +48,11 @@ public class ClientListCustomAdapter extends BaseAdapter{
 
         TextView textView = convertView.findViewById(R.id.firstname);
         TextView textView1 = convertView.findViewById(R.id.lastname);
-     //   TextView textView2 = convertView.findViewById(R.id.wage);
+        TextView textView2 = convertView.findViewById(R.id.wage);
 
         textView.setText(clientDataModel.getFirstName());
         textView1.setText(clientDataModel.getLastName());
-     //   textView2.setText(clientDataModel.getWage());
+        textView2.setText(String.valueOf(clientDataModel.getWage()));
 
         return convertView;
     }
