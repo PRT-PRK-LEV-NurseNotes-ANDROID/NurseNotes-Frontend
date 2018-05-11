@@ -24,5 +24,4 @@ public class ClientEditActivity extends AppCompatActivity {
     public void saveClient(View view){
         Toast.makeText(getApplicationContext(), "Client saved!", Toast.LENGTH_LONG).show();
     }
-
 }

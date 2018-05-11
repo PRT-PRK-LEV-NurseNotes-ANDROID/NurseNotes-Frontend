@@ -139,17 +139,6 @@
             android:layout_height="wrap_content"
             android:text="Save Day" />
 
-        <Button
-            android:id="@+id/clients_button"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Clients" />
-
-        <Button
-            android:id="@+id/historybutton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="History" />
     </LinearLayout>
 
 </hu.unideb.nursenotes.frontend.movements.ScrollEnable>

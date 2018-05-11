@@ -66,7 +66,7 @@ public class LoginActivity extends AppCompatActivity {
         } else {
             new LoginTask(this).execute(userEditText.getText().toString(), passwordEditText.getText().toString());
             Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this, ClientActivity.class));
+            startActivity(new Intent(this, ClientList.class));
 //
 //        }
 //        try {
@@ -88,9 +88,7 @@ public class LoginActivity extends AppCompatActivity {
 //
 //            @OnClick(R.id.register_button)
 //            public void register (View view){
-
-            // new RegistrationTask(this).
-            //       }
+ //       }
 
 //    private ide visza kell andi amit vár a link azt az objektumot create(){
 //        itt meg kell írni a builder

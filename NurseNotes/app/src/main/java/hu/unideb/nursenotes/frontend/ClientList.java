@@ -48,9 +48,20 @@ public class ClientList extends AppCompatActivity {
 
     }
 
-    @OnClick(R.id.save_client_button)
-    public void login(View view) {
+//    @OnClick(R.id.save_client_button)
+//    public void login(View view) {
+//        startActivity(new Intent(this, ClientEditActivity.class));
+//    }
+
+    @OnClick(R.id.add_client_button)
+    public void clients_button(View view) {
         startActivity(new Intent(this, ClientEditActivity.class));
+    }
+
+
+    @OnClick(R.id.historybutton)
+    public void historybutton(View view) {
+        startActivity(new Intent(this, History.class));
     }
 }
 

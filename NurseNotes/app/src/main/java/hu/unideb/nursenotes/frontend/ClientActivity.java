@@ -200,17 +200,9 @@ public class ClientActivity extends AppCompatActivity {
                 );
             }
         }
-    @OnClick(R.id.clients_button)
-    public void clients_button(View view) {
-        startActivity(new Intent(this, ClientList.class));
-    }
 
     @OnClick(R.id.savebutton)
     public void save(View view){
         Toast.makeText(getApplicationContext(),"Day saved!", Toast.LENGTH_LONG).show();
-    }
-    @OnClick(R.id.historybutton)
-    public void historybutton(View view) {
-        startActivity(new Intent(this, History.class));
     }
 }
