@@ -121,11 +121,6 @@
                 android:text="Save_signature" />
         </LinearLayout>
 
-        <!--android:foregroundGravity="fill_horizontal"-->
-        <!--android:keepScreenOn="true"-->
-        <!--android:overScrollMode="never"-->
-        <!--app:inkFlags="interpolation|responsiveWeight" />-->
-
 
         <Button
             android:id="@+id/savebutton"
