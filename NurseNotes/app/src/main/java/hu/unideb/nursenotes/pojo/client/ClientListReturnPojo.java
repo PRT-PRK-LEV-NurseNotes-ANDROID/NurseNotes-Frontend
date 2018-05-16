@@ -1,4 +1,4 @@
-package hu.unideb.nursenotes.pojo.login;
+package hu.unideb.nursenotes.pojo.client;
 
 import java.util.List;
 
@@ -7,11 +7,11 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class LoginReturnPojo {
+@Data
+public class ClientListReturnPojo {
 
     private int httpCode;
-    private List<ClientResponse> clientResponseList;
+    private List<ClientResponse> clientResponses;
 }

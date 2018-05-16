@@ -9,11 +9,15 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.apache.commons.codec.binary.Base64;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import hu.unideb.nursenotes.R;
+import hu.unideb.nursenotes.activity.main.MainActivity;
 import hu.unideb.nursenotes.activity.registration.RegistrationActivity;
+import hu.unideb.nursenotes.task.login.LoginTask;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -50,9 +54,7 @@ public class LoginActivity extends AppCompatActivity {
             errorTextView.setText("Password is empty!");
             errorTextView.setVisibility(View.VISIBLE);
         } else {
-//            new LoginTask(this).execute(userEditText.getText().toString(), passwordEditText.getText().toString());
-            Toast.makeText(getApplicationContext(), "Login successful!", Toast.LENGTH_LONG).show();
-//            startActivity(new Intent(this, ClientList.class));
+            new LoginTask(this).execute(getBase64(usernameEditText.getText().toString(),passwordEditText.getText().toString()));
         }
     }
 
@@ -60,4 +62,11 @@ public class LoginActivity extends AppCompatActivity {
     public void registerButton(View view){
         startActivity(new Intent(this, RegistrationActivity.class));
     }
+
+    private static String getBase64(String username, String password) {
+        String toBase64 = username + ":" + password;
+        byte[] encodedUsernameAndPassword = Base64.encodeBase64(toBase64.getBytes());
+        return new String(encodedUsernameAndPassword);
+    }
+
 }

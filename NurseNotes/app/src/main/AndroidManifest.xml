@@ -20,6 +20,7 @@
         <activity android:name=".activity.main.MainActivity"/>
         <activity android:name=".activity.registration.RegistrationActivity" />
         <activity android:name=".activity.client.ClientAddActivty" />
+        <activity android:name=".activity.client.ClientModificationActivity" />
     </application>
 
 </manifest>

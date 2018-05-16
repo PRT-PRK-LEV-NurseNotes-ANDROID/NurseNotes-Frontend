@@ -1,5 +1,6 @@
 package hu.unideb.nursenotes.listview.adapter.client;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,56 +11,48 @@ import android.widget.TextView;
 import java.util.List;
 
 import hu.unideb.nursenotes.R;
+import hu.unideb.nursenotes.commons.pojo.response.ClientResponse;
 
 public class ClientListCustomAdapter extends BaseAdapter {
 
     private Context context;
-//    private List<ClientDataModel> clientDataModels;
+    private List<ClientResponse> clientResponses;
 
-//    public ClientListCustomAdapter(Context context, List<ClientDataModel> clientDataModels) {
-//        this.context = context;
-//        this.clientDataModels = clientDataModels;
-//    }
+    public ClientListCustomAdapter(Context context, List<ClientResponse> clientResponses) {
+        this.context = context;
+        this.clientResponses = clientResponses;
+    }
 
     @Override
     public int getCount() {
-        return 0;
+        return clientResponses.size();
     }
 
     @Override
-    public Object getItem(int i) {
-        return null;
+    public Object getItem(int position) {
+        return clientResponses.get(position);
     }
 
-    //    @Override
-//    public int getCount() {
-//        return clientDataModels.size();
-//    }
-//
-//    @Override
-//    public Object getItem(int position) {
-//        return clientDataModels.get(position);
-//    }
-//
     @Override
     public long getItemId(int position) {
         return position;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         if(convertView == null){
             convertView = LayoutInflater.from(context).inflate(R.layout.client_row_item, parent, false);
         }
-//        ClientDataModel clientDataMoCdel = (ClientDataModel) getItem(position);
+
+        ClientResponse clientResponse = (ClientResponse) getItem(position);
 
         TextView clientNameTextView = convertView.findViewById(R.id.client_name);
         TextView clientAdressTextView = convertView.findViewById(R.id.client_address);
 
-//        textView.setText(clientDataModel.getFirstName());
-//        textView1.setText(clientDataModel.getLastName());
-//        textView2.setText(String.valueOf(clientDataModel.getWage()));
+        clientNameTextView.setText(clientResponse.getFirstName() + " " +clientResponse.getLastName());
+        clientAdressTextView.setText(clientResponse.getAddress());
 
         return convertView;
     }
