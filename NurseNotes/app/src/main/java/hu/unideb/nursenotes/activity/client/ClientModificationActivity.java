@@ -3,11 +3,18 @@ package hu.unideb.nursenotes.activity.client;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
+
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import hu.unideb.nursenotes.R;
+import hu.unideb.nursenotes.commons.pojo.request.ClientRequest;
+import hu.unideb.nursenotes.task.client.ClientAddTask;
 
 public class ClientModificationActivity extends AppCompatActivity {
 
@@ -35,4 +42,27 @@ public class ClientModificationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_add_client);
         ButterKnife.bind(this);
     }
+
+    @OnClick(R.id.save_client_button)
+    public void editClient(View view){
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(createClient());
+            new ClientAddTask(this).execute(jsonInString);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private ClientRequest createClient(){
+        return ClientRequest.builder()
+                .firstName(clientFirstNameEdit.getText().toString())
+                .lastName(clientLastNameEdit.getText().toString())
+                .age(Integer.parseInt(clientAgeEdit.getText().toString()))
+                .phoneNumber(clientPhoneEdit.getText().toString())
+                .address(clientAddressEdit.getText().toString())
+                .wage(Integer.parseInt(clintWageEdit.getText().toString()))
+                .build();
+    }
+
 }

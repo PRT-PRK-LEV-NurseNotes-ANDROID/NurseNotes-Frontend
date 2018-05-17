@@ -5,4 +5,42 @@
     <string name="login_button_text">Login</string>
     <string name="registration_button_text">Registration</string>
     <string name="add_client_button_text">Add Client</string>
+
+    <string-array name="activities_array">
+        <item>Sweeping the floor</item>
+        <item>Vacuum Cleaning</item>
+        <item>Moping</item>
+        <item>Dust</item>
+        <item>Dishwasing</item>
+        <item>Prepare food</item>
+        <item>Help cooking</item>
+        <item>Help baking</item>
+        <item>Clean the fridge</item>
+        <item>Clean the tables</item>
+        <item>Clean the windows</item>
+        <item>Clean the bathroom</item>
+        <item>Clean the mat</item>
+        <item>Put away the vessel</item>
+        <item>Disinfect</item>
+        <item>Turn on the heat</item>
+        <item>Get prescription Written</item>
+        <item>Buy medicine</item>
+        <item>Accompany to Doctor</item>
+        <item>Injections</item>
+        <item>Reserve appointment</item>
+        <item>Separate medicine</item>
+        <item>Call a plumber</item>
+        <item>Call a lumberjack</item>
+        <item>Call a gasman</item>
+        <item>Call the doctor</item>
+        <item>Oder food</item>
+        <item>Order goods online</item>
+        <item>Set up TV</item>
+        <item>Set up phone</item>
+        <item>Talk about life</item>
+        <item>Shopping</item>
+        <item>Table Games</item>
+        <item>Card games</item>
+    </string-array>
+
 </resources>

@@ -49,10 +49,10 @@ public class ClientListCustomAdapter extends BaseAdapter {
         ClientResponse clientResponse = (ClientResponse) getItem(position);
 
         TextView clientNameTextView = convertView.findViewById(R.id.client_name);
-        TextView clientAdressTextView = convertView.findViewById(R.id.client_address);
+        TextView clientAddressTextView = convertView.findViewById(R.id.client_address);
 
         clientNameTextView.setText(clientResponse.getFirstName() + " " +clientResponse.getLastName());
-        clientAdressTextView.setText(clientResponse.getAddress());
+        clientAddressTextView.setText(clientResponse.getAddress());
 
         return convertView;
     }

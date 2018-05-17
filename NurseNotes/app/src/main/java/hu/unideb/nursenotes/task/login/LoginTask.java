@@ -10,13 +10,13 @@ import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
+import java.io.Serializable;
 import java.net.SocketTimeoutException;
 import java.util.List;
 
-import hu.unideb.nursenotes.activity.login.LoginActivity;
 import hu.unideb.nursenotes.activity.main.MainActivity;
 import hu.unideb.nursenotes.commons.pojo.response.ClientResponse;
-import hu.unideb.nursenotes.commons.pojo.response.UserDetailsResponse;
+import hu.unideb.nursenotes.container.StoredUserInfo;
 import hu.unideb.nursenotes.pojo.login.LoginReturnPojo;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -25,8 +25,7 @@ import okhttp3.Response;
 import static hu.unideb.nursenotes.container.PathContainer.GET_ALL_CLEINT;
 import static hu.unideb.nursenotes.container.PathContainer.LOGIN_URL;
 import static hu.unideb.nursenotes.container.PathContainer.UNKNOW_ERROR;
-import static java.net.HttpURLConnection.HTTP_ACCEPTED;
-import static java.net.HttpURLConnection.HTTP_BAD_REQUEST;
+import static hu.unideb.nursenotes.container.Unsafe.getUnsafeOkHttpClient;
 import static java.net.HttpURLConnection.HTTP_CLIENT_TIMEOUT;
 import static java.net.HttpURLConnection.HTTP_GATEWAY_TIMEOUT;
 import static java.net.HttpURLConnection.HTTP_INTERNAL_ERROR;
@@ -42,18 +41,17 @@ public class LoginTask extends AsyncTask<String, Void, LoginReturnPojo> {
     public LoginTask(Activity actualActivity) {
         this.actualActivity = actualActivity;
     }
-
     @Override
     protected LoginReturnPojo doInBackground(String... strings) {
         Log.d(TAG, "doInBackground: Start");
             try {
-                OkHttpClient client = new OkHttpClient();
+                OkHttpClient client = getUnsafeOkHttpClient();
                 ObjectMapper objectMapper = new ObjectMapper();
                 Request request = new Request.Builder()
                         .url(LOGIN_URL)
                         .header("Authorization", "Basic " + strings[0])
                         .build();
-
+                StoredUserInfo.getInstance().setInternalToken(strings[0]);
                 Response response = client.newCall(request).execute();
                 int responseCode = response.code();
 
@@ -97,10 +95,12 @@ public class LoginTask extends AsyncTask<String, Void, LoginReturnPojo> {
     protected void onPostExecute(LoginReturnPojo loginReturnPojo) {
         super.onPostExecute(loginReturnPojo);
         switch (loginReturnPojo.getHttpCode()) {
-            case HTTP_ACCEPTED:
+            case HTTP_OK:
                 Intent intent = new Intent(actualActivity, MainActivity.class);
+                intent.putExtra("LIST", (Serializable) loginReturnPojo.getClientResponseList() );
+
                 actualActivity.startActivity(intent);
-                Toast.makeText(actualActivity, "SUCCES", Toast.LENGTH_SHORT).show();
+                Toast.makeText(actualActivity, "Successful login", Toast.LENGTH_SHORT).show();
                 break;
             case UNKNOW_ERROR:
 //                errorTextViewAtRegistration.setVisibility(View.VISIBLE);

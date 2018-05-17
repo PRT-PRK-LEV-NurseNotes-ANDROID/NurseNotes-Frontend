@@ -25,6 +25,7 @@ import okhttp3.Response;
 import static hu.unideb.nursenotes.container.PathContainer.MEDIA_TYPE_JSON;
 import static hu.unideb.nursenotes.container.PathContainer.REGISTRATION_URL;
 import static hu.unideb.nursenotes.container.PathContainer.UNKNOW_ERROR;
+import static hu.unideb.nursenotes.container.Unsafe.getUnsafeOkHttpClient;
 import static java.net.HttpURLConnection.HTTP_ACCEPTED;
 import static java.net.HttpURLConnection.HTTP_BAD_REQUEST;
 import static java.net.HttpURLConnection.HTTP_CLIENT_TIMEOUT;
@@ -46,7 +47,7 @@ public class RegistrationTask extends AsyncTask<String, Void, RegistrationReturn
     @Override
     protected RegistrationReturnPojo doInBackground(String... strings) {
         try {
-            OkHttpClient client = new OkHttpClient();
+            OkHttpClient client = getUnsafeOkHttpClient();
             RequestBody body = RequestBody.create(MEDIA_TYPE_JSON, strings[0]);
             Request request = new Request.Builder()
                     .url(REGISTRATION_URL)
@@ -89,14 +90,14 @@ public class RegistrationTask extends AsyncTask<String, Void, RegistrationReturn
             case HTTP_ACCEPTED:
                 Intent intent = new Intent(actualActivity, LoginActivity.class);
                 actualActivity.startActivity(intent);
-                Toast.makeText(actualActivity, "SUCCES", Toast.LENGTH_SHORT).show();
+                Toast.makeText(actualActivity, "Successful registration!", Toast.LENGTH_SHORT).show();
                 break;
             case HTTP_BAD_REQUEST:
 //                for (Violation violation : registrationReturnPojo.getViolationList()) {
-//                    String fildName = violation.getField();
+//                    String fieldName = violation.getField();
 //
 //                }
-                Toast.makeText(actualActivity, "nO REGISTRATION", Toast.LENGTH_SHORT).show();
+                Toast.makeText(actualActivity, "Unsuccessful registration.", Toast.LENGTH_SHORT).show();
                 break;
             case UNKNOW_ERROR:
 //                errorTextViewAtRegistration.setVisibility(View.VISIBLE);

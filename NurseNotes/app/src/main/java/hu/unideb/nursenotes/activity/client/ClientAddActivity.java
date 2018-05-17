@@ -2,16 +2,23 @@ package hu.unideb.nursenotes.activity.client;
 
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 import hu.unideb.nursenotes.R;
 import hu.unideb.nursenotes.commons.pojo.request.ClientRequest;
 import hu.unideb.nursenotes.commons.pojo.response.ClientResponse;
+import hu.unideb.nursenotes.task.client.ClientAddTask;
+import hu.unideb.nursenotes.task.registration.RegistrationTask;
 
-public class ClientAddActivty extends AppCompatActivity {
+public class ClientAddActivity extends AppCompatActivity {
 
 
     @BindView(R.id.client_fname_editText)
@@ -35,8 +42,20 @@ public class ClientAddActivty extends AppCompatActivity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_client);
+        setContentView(R.layout.activity_client_edit);
         ButterKnife.bind(this);
+
+    }
+
+    @OnClick(R.id.save_client_button)
+    public void addClient(View view){
+        ObjectMapper mapper = new ObjectMapper();
+        try {
+            String jsonInString = mapper.writerWithDefaultPrettyPrinter().writeValueAsString(createClient());
+            new ClientAddTask(this).execute(jsonInString);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
     }
 
     private ClientRequest createClient(){

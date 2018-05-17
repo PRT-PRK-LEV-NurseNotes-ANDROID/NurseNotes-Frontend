@@ -57,7 +57,7 @@ dependencies {
     implementation 'commons-codec:commons-codec:1.11'
 
     //shared
-    implementation 'com.github.PRT-PRK-LEV-NurseNotes-ANDROID:NurseNotes-Shared:659985bd44'
+    implementation 'com.github.PRT-PRK-LEV-NurseNotes-ANDROID:NurseNotes-Shared:8187db48df'
 
     //json
     implementation 'com.fasterxml.jackson.core:jackson-core:2.6.3'
